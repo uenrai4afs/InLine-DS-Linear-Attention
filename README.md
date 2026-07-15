@@ -117,6 +117,3 @@ If you use this code, please cite both this work and the original InLine paper i
 
 This repository is built directly on top of [LeapLabTHU/InLine](https://github.com/LeapLabTHU/InLine). We thank the original authors for open-sourcing their implementation.
 
-## License
-
-TODO — specify license (e.g., MIT, Apache-2.0) consistent with the base InLine repository.
