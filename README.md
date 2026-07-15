@@ -16,18 +16,14 @@ All InLine-DS operators retain **O(N) complexity** in token count, matching the 
 
 ```
 .
-├── models/
+├── inlineds_models/
 │   ├── inline_deit_ds.py       # InLine-DS DeiT implementation
 │   ├── inline_swin_ds.py       # InLine-DS Swin implementation
 │   ├── inline_cswin_ds.py      # InLine-DS CSwin implementation
 │   └── inline_pvt_ds.py        # InLine-DS PVT implementation
-├── configs/                    # Training configs per backbone/dataset
-├── scripts/
-│   ├── train.py
-│   └── evaluate.py
-├── appendix_diagnostics/        # Scripts used to generate appendix figures
-│   (kernel parameter distributions, attention rollout, head redundancy,
-│    pruning sensitivity, layer attribution, calibration, risk-coverage)
+├── data/                    # Holds the unzipped datasets
+|__ data_archives/            # Holds the zipped datasets
+├── InLine-DS_train.ipynb     # Training notebook
 └── README.md
 ```
 
@@ -48,43 +44,27 @@ All InLine-DS operators retain **O(N) complexity** in token count, matching the 
 - **SVHN** ([Netzer et al., 2011](http://ufldl.stanford.edu/housenumbers/nips2011_housenumbers.pdf))
 - **TinyImageNet-200** ([Le & Yang, 2015](http://cs231n.stanford.edu/reports/2015/pdfs/yle_project.pdf))
 
-Dataset download/preprocessing scripts are provided under `scripts/data/`.
 
 ## Installation
 
 ```bash
 git clone https://github.com/<your-org>/inline-ds.git
 cd inline-ds
-pip install -r requirements.txt
 ```
 
 Requires PyTorch ≥ 1.13 and [`timm`](https://github.com/rwightman/pytorch-image-models).
 
 ## Training
+Train with InLine-DS_train.ipynb.
 
-```bash
-python scripts/train.py \
-    --model inline_ds_deit_tiny \
-    --dataset cifar100 \
-    --epochs 100 \
-    --lr 1e-3 \
-    --output-dir ./runs/inline_ds_deit_tiny_cifar100
-```
-
-Configs for every backbone/dataset pairing reported in the paper are provided in `configs/`.
 
 ## Evaluation
+Use InLine-DS_train.ipynb.
 
-```bash
-python scripts/evaluate.py \
-    --model inline_ds_deit_tiny \
-    --checkpoint ./runs/inline_ds_deit_tiny_cifar100/best.pt \
-    --dataset cifar100
-```
 
 ## Appendix Diagnostics
 
-Scripts used to generate the diagnostic figures reported in the paper's appendix are provided in `appendix_diagnostics/`, including:
+Scripts used to generate the diagnostic figures reported in the paper's appendix are provided in the InLine-DS_train.ipynb notebook, including:
 
 - Learned kernel parameter (τ, η) distributions by depth
 - Patch attention / gradient-weighted attention rollout visualizations
@@ -104,7 +84,7 @@ Scripts used to generate the diagnostic figures reported in the paper's appendix
 | DeiT-Tiny | TinyImageNet-200 | 44.70% | 60.42% |
 | DeiT-Small | SVHN | 93.80% | 98.01% |
 | CSwin-Tiny | CIFAR-100 | 57.14% | 61.08% |
-| PVT-Tiny | TinyImageNet-200 | 53.22% | 58.75% |
+| PVT-Tiny | TinyImageNet-200 | 53.22% | 58.74% |
 
 Full results tables are provided in the paper.
 
@@ -118,11 +98,11 @@ Full results tables are provided in the paper.
 If you use this code, please cite both this work and the original InLine paper it builds on:
 
 ```bibtex
-@article{inlinemethodname2025,
+@article{inlinemethodname2026,
   title   = {Concentration Beyond Injectivity with Magnitude-Modulated Spectral Kernels for Linear Attention},
-  author  = {TODO},
-  journal = {TODO},
-  year    = {2025}
+  author  = {N/A},
+  journal = {N/A},
+  year    = {N/A}
 }
 
 @inproceedings{han2024bridging,
