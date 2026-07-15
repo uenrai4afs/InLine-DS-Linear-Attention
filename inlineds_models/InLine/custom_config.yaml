@@ -1,0 +1,70 @@
+DATA:
+  IMG_SIZE: 64
+  BATCH_SIZE: 128
+  DATASET: 'tinyimagenet'
+  DATA_PATH: '/content/InLineDAttention/data'
+  NUM_WORKERS: 4
+  PIN_MEMORY: true
+  INTERPOLATION: 'bicubic'
+
+TRAIN:
+  WEIGHT_DECAY: 0.05000000
+  BASE_LR: 0.00400000
+  WARMUP_LR: 0.00005000
+  MIN_LR: 0.00004000
+  CLIP_GRAD: 1.0
+  EPOCHS: 3
+  WARMUP_EPOCHS: 10
+  AUTO_RESUME: false
+  USE_CHECKPOINT: false
+  LR_SCHEDULER:
+    NAME: 'cosine'
+    DECAY_EPOCHS: 30
+    DECAY_RATE: 0.1
+  OPTIMIZER:
+    NAME: 'adamw'
+    EPS: 1.0e-8
+    BETAS: [0.9, 0.999]
+    MOMENTUM: 0.9
+
+AUG:
+  MIXUP: 0.1
+  CUTMIX: 0.1
+  MIXUP_PROB: 1.0
+  MIXUP_SWITCH_PROB: 0.5
+  MIXUP_MODE: 'batch'
+  COLOR_JITTER: 0.4
+  AUTO_AUGMENT: 'rand-m5-mstd0.5-inc1'
+  REPROB: 0.0
+  REMODE: 'pixel'
+  RECOUNT: 1
+  CUTMIX_MINMAX:
+
+MODEL:
+  TYPE: 'inline_cswin_ds_small'
+  NAME: 'inline_cswin_ds_small'
+  RESUME: ''
+  NUM_CLASSES: 200
+  DROP_RATE: 0.0
+  DROP_PATH_RATE: 0.1
+  LABEL_SMOOTHING: 0.1
+  SWIN:
+    PATCH_SIZE: 4
+    WINDOW_SIZE: 7
+  INLINE:
+    ATTN_TYPE: 'DDDD'
+    PVT_LA_SR_RATIOS: 1111
+    CSWIN_LA_SPLIT_SIZE: '7-7-4-2'
+
+TEST:
+  CROP: true
+
+AMP: false
+OUTPUT: '/content/InLineDAttention/output'
+SAVE_FREQ: 10
+PRINT_FREQ: 10
+SEED: 0
+TAG: 'tinyimagenet_inline_cswin_ds_small'
+EVAL_MODE: false
+THROUGHPUT_MODE: false
+LOCAL_RANK: 0
